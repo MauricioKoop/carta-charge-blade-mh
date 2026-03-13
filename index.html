@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Carta do Caçador | Mauricio Eduardo Koop</title>
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap"
+			rel="stylesheet"
+		/>
+
+		<style>
+			/* --- RESET E ESTILOS GERAIS --- */
+			:root {
+				--bg-body: #121418; /* Fundo muito escuro */
+				--bg-carta: #2a2e35; /* Metal escovado escuro */
+				--cor-texto: #e0e0e0; /* Cinza claro para leitura */
+				--cor-destaque: #d4af37; /* Dourado rústico */
+				--cor-borda: #40454f; /* Borda metálica sutil */
+				--fonte-titulo: "Cinzel", serif;
+				--fonte-corpo: "Lora", serif;
+			}
+
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			body {
+				background-color: var(--bg-body);
+				background-image: url("https://www.transparenttextures.com/patterns/dark-dotted-2.png");
+				color: var(--cor-texto);
+				font-family: var(--fonte-corpo);
+				line-height: 1.8;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				min-height: 100vh;
+				padding: 20px;
+			}
+
+			/* --- CONTAINER PRINCIPAL (A CARTA) --- */
+			.carta {
+				background-color: var(--bg-carta);
+				background-image: url("https://www.transparenttextures.com/patterns/brushed-alum.png");
+				width: 100%;
+				max-width: 850px;
+				padding: 8% 10%;
+				border: 2px solid var(--cor-borda);
+				border-radius: 8px;
+				box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
+				position: relative;
+				overflow: hidden;
+			}
+
+			/* Decorador de borda dourada rústica (CSS Simulado) */
+			.carta::before {
+				content: "";
+				position: absolute;
+				top: 15px;
+				left: 15px;
+				right: 15px;
+				bottom: 15px;
+				border: 1px solid var(--cor-destaque);
+				opacity: 0.3;
+				border-radius: 4px;
+				pointer-events: none;
+			}
+
+			/* --- CABEÇALHO --- */
+			.titulo-container {
+				text-align: center;
+				margin-bottom: 50px;
+				position: relative;
+			}
+
+			.titulo {
+				font-family: var(--fonte-titulo);
+				font-size: 2rem;
+				color: var(--cor-destaque);
+				font-weight: 700;
+				text-transform: uppercase;
+				letter-spacing: 3px;
+				margin-bottom: 10px;
+			}
+
+			.subtitulo {
+				font-style: italic;
+				color: #a0a0a0;
+				font-size: 1rem;
+			}
+
+			/* --- CORPO DA CARTA --- */
+			.meta-info {
+				display: flex;
+				justify-content: space-between;
+				flex-wrap: wrap;
+				gap: 15px;
+				margin-bottom: 30px;
+				border-bottom: 1px solid var(--cor-borda);
+				padding-bottom: 20px;
+			}
+
+			.data {
+				color: #a0a0a0;
+			}
+
+			.destinatario {
+				font-weight: 600;
+				color: #ffffff;
+			}
+
+			.corpo-texto {
+				font-size: 1.15rem;
+				text-align: justify;
+				text-indent: 40px;
+				margin-bottom: 50px;
+			}
+
+			.corpo-texto i {
+				color: var(--cor-destaque);
+				font-weight: 600;
+			}
+
+			/* --- ASSINATURA --- */
+			.assinatura-container {
+				text-align: right;
+				position: relative;
+			}
+
+			.atenciosamente {
+				font-style: italic;
+				color: #a0a0a0;
+				margin-bottom: 5px;
+			}
+
+			.assinatura-box {
+				display: inline-block;
+				padding: 15px 30px;
+				background-color: rgba(212, 175, 55, 0.1);
+				border: 1px solid var(--cor-destaque);
+				border-radius: 4px;
+				transition: all 0.3s ease;
+				cursor: pointer;
+			}
+
+			.assinatura-box:hover {
+				background-color: rgba(212, 175, 55, 0.2);
+				box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+				transform: translateY(-3px);
+			}
+
+			.nome-autor {
+				font-family: var(--fonte-titulo);
+				font-size: 1.4rem;
+				color: var(--cor-destaque);
+				font-weight: 500;
+				display: block;
+			}
+
+			.cargo-autor {
+				font-size: 0.9rem;
+				color: #a0a0a0;
+				font-style: italic;
+			}
+
+			/* --- SELO DA GUILDA (CSS Simulado) --- */
+			.selo-guilda {
+				position: absolute;
+				bottom: -30px;
+				left: -30px;
+				width: 150px;
+				height: 150px;
+				background-color: #8b0000;
+				border-radius: 50%;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+				transform: rotate(-15deg);
+				opacity: 0.8;
+				pointer-events: none;
+				z-index: 10;
+			}
+
+			.selo-guilda::after {
+				content: "MH";
+				font-family: var(--fonte-titulo);
+				font-size: 3rem;
+				color: #b22222;
+				font-weight: bold;
+			}
+
+			/* -----------------------------------------------------------
+           --- MEDIA QUERIES (RESPONSIVIDADE) ---
+           ----------------------------------------------------------- */
+
+			/* Tablets e Telas Médias (abaixo de 768px) */
+			@media (max-width: 768px) {
+				.carta {
+					padding: 10% 8%;
+				}
+
+				.titulo {
+					font-size: 2.2rem;
+				}
+
+				.corpo-texto {
+					font-size: 1.1rem;
+					text-indent: 20px;
+				}
+
+				.selo-guilda {
+					width: 100px;
+					height: 100px;
+					bottom: -20px;
+					left: -20px;
+				}
+
+				.selo-guilda::after {
+					font-size: 2rem;
+				}
+			}
+
+			/* Celulares e Telas Pequenas (abaixo de 480px) */
+			@media (max-width: 480px) {
+				body {
+					padding: 10px;
+				}
+
+				.carta {
+					padding: 15% 5%;
+				}
+
+				.titulo {
+					font-size: 1.8rem;
+					letter-spacing: 1px;
+				}
+
+				.meta-info {
+					flex-direction: column;
+					text-align: center;
+					gap: 5px;
+				}
+
+				.corpo-texto {
+					font-size: 1rem;
+					text-align: left;
+					text-indent: 0;
+					margin-bottom: 30px;
+				}
+
+				.assinatura-container {
+					text-align: center;
+				}
+
+				.assinatura-box {
+					width: 100%;
+				}
+
+				/* Esconde o selo em telas muito pequenas para não poluir */
+				.selo-guilda {
+					display: none;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<article class="carta">
+			<div class="selo-guilda" aria-hidden="true"></div>
+
+			<header class="titulo-container">
+				<h1 class="titulo">Relatório de Caça</h1>
+				<p class="subtitulo">Análise Técnica de Armamento</p>
+			</header>
+
+			<section class="meta-info">
+				<div class="data">Base de Astera, 13 de Março de 2026.</div>
+				<div class="destinatario">
+					Para: Alta Cúpula da Guilda de Caçadores
+				</div>
+			</section>
+
+			<section class="corpo-texto">
+				<p>
+					Gostaria de formalizar meus cumprimentos à equipe técnica da
+					oficina pelo recente e detalhado guia sobre a mecânica da
+					<i>Charge Blade</i>. Como um caçador veterano que já
+					enfrentou desde Great Jagras até Nergigantes, concordo
+					plenamente que o gerenciamento de frascos e o timing preciso
+					do <i>Guard Point</i> são as habilidades que separam um
+					amador de um mestre da técnica. Dominar a transição da
+					espada para o machado no momento exato de um impacto
+					elemental exige uma carga mental imensa e nervos de aço. No
+					entanto, a recompensa visual e o dano devastador de um SAED
+					(Super Amped Element Discharge) bem aplicado compensam todo
+					o estresse do combate. É, sem dúvida, a arma mais versátil,
+					técnica e recompensadora de todo o arsenal da quinta
+					geração.
+				</p>
+			</section>
+
+			<footer class="assinatura-container">
+				<p class="atenciosamente">Atenciosamente,</p>
+				<div class="assinatura-box">
+					<span class="nome-autor">Mauricio Eduardo Koop</span>
+					<span class="cargo-autor"
+						>Caçador de Classe G - Especialista em Impacto</span
+					>
+				</div>
+			</footer>
+		</article>
+	</body>
+</html>
